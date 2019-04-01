@@ -19,12 +19,13 @@
         <el-button type="primary" @click="openEldialog('checkingin')">考勤</el-button>
         <el-button type="primary" @click="openEldialog('changework')">異動</el-button>
         <el-button type="primary" @click="openEldialog('takework')">調休</el-button>
-        <el-button type="primary" @click="openEldialog('leaveoffice')">離職</el-button>        
+        <el-button type="primary" @click="openEldialog('leaveoffice')">離職</el-button> 
       </el-col>
-    </el-row>    
+    </el-row>  
+    <!-- <leave infodata='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'></leave>   -->
     <el-row :gutter="10" class="bodyTable">
       <el-col :span="22" :offset="1" class="allTool">
-        <personnel></personnel>
+        <personnel v-on:changeUser="changeUser" ></personnel>
       </el-col>
       <!-- xs	<768px 分辨率小於768 顯示占比 -->
       <!-- <el-col :xs="10" :span="22" :offset="1" class="allTool">AAAAA</el-col> -->
@@ -38,11 +39,11 @@
       <!-- <el-col :xl="10" :span="22" :offset="1" class="allTool">EEEEE</el-col> -->
     </el-row>
     <el-dialog
-      title="申請"
+      :title="currentView"
       :visible.sync="dialogVisible"
       :width="eldialogWidth"
       :before-close="handleClose">      
-      <span><component :is="currentView"></component></span>  
+      <span><component :infodata="userData" :is="currentView"></component></span>  
       <!-- component :is 方式動態加載 組件 -->
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
@@ -67,6 +68,7 @@
           dialogVisible:false,
           ewidth:'',
           currentView:'',
+          userData:[]
         }
       },
       components:{
@@ -82,11 +84,14 @@
       methods:{
         openEldialog(typ){
           this.dialogVisible = true;
-          this.currentView=typ;
+          this.currentView=typ;           
         },
         handleClose(){
-
-        },               
+        },
+        changeUser(usr){
+          this.userData = usr;
+          //console.log(usr)
+        }                       
       },
       /**
        * 根據寬度顯示DIV 大小比例

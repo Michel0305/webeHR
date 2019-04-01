@@ -1,11 +1,14 @@
 <template>
-  <section class="app-main">
+  <div>
+    <section class="app-main">
     <transition name="fade-transform" mode="out-in">
       <keep-alive :include="cachedViews">
         <router-view :key="key"/>
       </keep-alive>
-    </transition>
-  </section>
+    </transition>    
+  </section>    
+  </div>
+  
 </template>
 
 <script>
@@ -18,7 +21,13 @@ export default {
     key() {
       return this.$route.fullPath
     }
-  }
+  },
+  // mounted () {
+  //   $('#talkMeet').stickySidebar({
+  //       sidebarTopMargin: 20,
+  //       footerThreshold: 100
+  //     });
+  // }
 }
 </script>
 

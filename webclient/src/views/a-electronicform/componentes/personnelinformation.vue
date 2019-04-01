@@ -8,7 +8,7 @@
     </el-col>  
     <el-table 
     ref="multipleTable"
-    :data="tableData" 
+    :data="tableData.slice((currentPage1-1)*12,currentPage1*12)" 
     border
     :fit="true"
     :height="conheight.height"
@@ -33,24 +33,26 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page.sync="currentPage1"
-      :page-size="100"
+      :page-size="12"
       layout="total, prev, pager, next"
-      :total="1000">
+      :total=pageTotal>
     </el-pagination>
   </div>
 </template>
 
 <script>
+import bus from '@/assets/bus'; //同級組件傳參
+import {getUserData} from '@/api/user'
 var tableHaderCn = [
   { label: "工號", prop: "accountid", width: 55 },
   { label: "姓名", prop: "fullname", width: 70 },
-  { label: "部門", prop: "department", width: 110 },
-  { label: "部門編碼", prop: "departid", width: 70 },
-  { label: "課別", prop: "classname", width: 90 },
-  { label: "課別編碼", prop: "classid", width: 80 },
-  { label: "綫別", prop: "lines", width: 80 },
-  { label: "職位", prop: "position", width: 90 },
-  { label: "工位", prop: "station", width: 80 },
+  { label: "部門", prop: "userinfo.department", width: 110 },
+  { label: "部門編碼", prop: "userinfo.departid", width: 70 },
+  { label: "課別", prop: "userinfo.classname", width: 90 },
+  { label: "課別編碼", prop: "userinfo.classid", width: 80 },
+  { label: "綫別", prop: "userinfo.lines", width: 80 },
+  { label: "職位", prop: "userinfo.position", width: 90 },
+  { label: "工位", prop: "userinfo.station", width: 80 },
   { label: "班次", prop: "worktimes", width: 50 },
   { label: "家庭住址", prop: "homeaddress", width: 320 },
   { label: "身份証", prop: "cardid", width: 150 },
@@ -61,7 +63,8 @@ var tableHaderCn = [
   { label: "專業", prop: "profession", width: 90 }
 ];
 
-export default {
+
+export default {  
   data() {
     return {
       conheight: {
@@ -72,274 +75,21 @@ export default {
       search:'',
       tablefield: tableHaderCn,
       multipleSelection:'',
-      tableData: [
-        {
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "資訊部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        },
-        {
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "資訊部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        },
-        {
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "資訊部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        },
-        {
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "資訊部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        },
-        {
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "資訊部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        },
-        {
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "資訊部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        },
-        {
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "資訊部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        },
-        {
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "資訊部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        },
-        {
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "資訊部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        },
-        {
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "資訊部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        },
-        {
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "資訊部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        },{
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "資訊部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        },{
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "電子研發工程部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        },{
-          accountid: "36208",
-          fullname: "項敏項敏",
-          department: "資訊部",
-          departid: "420001",
-          classname: "軟件開發課",
-          classid: "420003",
-          lines: "維護組",
-          position: "高級工程師",
-          station: "軟體開發",
-          worktimes: "55",
-          homeaddress: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-          cardid: "340826198903058716",
-          infodate: "2009/11/26",
-          sex: "男",
-          school: "文達電腦專修學院",
-          degree: "大專",
-          profession: "計算機網絡"
-        }
-      ]
+      tableData: [],
+      pageTotal:0,
     };
+  }, 
+  mounted(){
+     var _that = this
+     _that.getUserJSON() 
   },
   methods: {
+    getUserJSON(){
+      getUserData().then(response=>{
+        this.tableData = response.data;
+        this.pageTotal = response.data.length;
+     })
+    },  
     getHeight() {
       this.conheight.height = window.innerHeight - 230 + "px";
     },
@@ -353,12 +103,15 @@ export default {
         }
     },
     handleSelectionChange(val) {
-        this.multipleSelection = val;
+        this.$emit("changeUser",val);
     },
     handleSizeChange(val){
+      // this.pageData = this.tableData.slice((val-1)*6,val*6)
+     // console.log('handleSizeChange:'+ val)
     },
     handleCurrentChange(val){
-        
+      this.currentPage1 = val
+      // console.log('handleCurrentChange:'+val) 
     }
   },
   created() {

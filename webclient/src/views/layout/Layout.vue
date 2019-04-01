@@ -5,13 +5,15 @@
     <div class="main-container">
       <navbar/>
       <tags-view/>
-      <app-main/>
+      <app-main/>      
     </div>
+    <exchange></exchange>
   </div>
 </template>
 
 <script>
 import { Navbar, Sidebar, AppMain, TagsView } from './components'
+import exchange from './components/exchange/index'
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
@@ -20,7 +22,8 @@ export default {
     Navbar,
     Sidebar,
     AppMain,
-    TagsView
+    TagsView,
+    exchange
   },
   mixins: [ResizeMixin],
   computed: {
