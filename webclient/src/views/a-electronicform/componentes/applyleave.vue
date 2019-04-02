@@ -39,7 +39,7 @@
 
 <script>
 import bus from '@/assets/bus' // 同級組件傳參
-import BusLeave from './business/leave.js'
+import BusLeave from './business/eformCommon.js'
 export default {
   props: ['infodata'],
   data() {
@@ -50,8 +50,8 @@ export default {
         endDate: '',
         remark: '',
         agentUsr: '',
-        dateCount: 2,
-        dateuom: '天'
+        dateCount: '',
+        dateuom: ''
       },
       lType: [{ label: '事假', value: '0' }, { label: '年休假', value: '1' }, { label: '病假', value: '2' }, { label: '產假', value: '3' }, { label: '哺乳假', value: '4' }, { label: '孕期公休', value: '5' }, { label: '婚假', value: '6' }, { label: '喪假', value: '7' }, { label: '陪護假', value: '8' }]
     }
@@ -67,7 +67,9 @@ export default {
   },
   methods: {
     computeDate() {
-      return BusLeave.checkdate(this.leavefrmData.startDate, this.leavefrmData.endDate)
+      let recheck = BusLeave.checkleavedate(this.leavefrmData.startDate, this.leavefrmData.endDate);
+      this.leavefrmData.dateCount = recheck.days;
+      this.leavefrmData.dateuom = recheck.uom;
     }
   }
 }
