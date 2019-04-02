@@ -4,7 +4,9 @@ export default {
     kyeform:'BizFocus eForm',
     fmapply:'Application Form',
     leave:'Review Leave',
-
+    settingform:'Setting',
+    userpermission:'User Right',
+    workflow:'WorkFlow',
     introduction: 'Introduction',
     documentation: 'Documentation',
     guide: 'Guide',

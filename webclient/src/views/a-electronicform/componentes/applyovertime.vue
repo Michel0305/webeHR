@@ -77,9 +77,7 @@
       <el-form-item label="備注信息">
         <el-input type="textarea" v-model="overtimefrmData.remark"></el-input>
       </el-form-item>
-      <el-form-item label="message">
-        {{infodata}}
-      </el-form-item>
+      {{infodata}}
     </el-form>
   </div>
 </template>
@@ -182,3 +180,11 @@ export default {
   }
 };
 </script>
+<style scoped>
+ .el-form{
+     font-size: 11px;
+ }
+ .el-form-item{
+     margin-bottom: 8px;
+ }
+</style>

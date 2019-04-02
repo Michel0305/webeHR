@@ -4,7 +4,9 @@ export default {
     kyeform:'電子表單',
     fmapply:'表單申請',
     leave:'請假單審核',
-
+    settingform:'設置',
+    userpermission:'用戶權限',
+    workflow:'作業流程',
 
 
     introduction: '簡述',
