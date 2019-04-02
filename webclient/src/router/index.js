@@ -148,6 +148,38 @@ export const asyncRouterMap = [
       }
     ] 
   },
+  {
+    path:"/setting",
+    component:Layout,
+    redirect:'/setting/userpermission',
+    meta:{
+      title:'settingform',
+      icon:'peoples',
+      roles:["admin","editor"]
+    },
+    children:[
+      {
+        path: "userpermission",
+        component: () => import("@/views/a-syssetting/userpermission"),
+        name: "userpermission",
+        meta: {
+          title: "userpermission",
+          roles: ["admin"] // or you can only set roles in sub nav
+        }
+      }
+      ,
+      {
+        path: "workflow",
+        component: () => import("@/views/a-syssetting/workflow"),
+        name: "workflow",
+        meta: {
+          title: "workflow",
+          roles: ["admin"] // or you can only set roles in sub nav
+        }
+
+      }
+    ]
+  },
 
   // {
   //   path: '/permission',
