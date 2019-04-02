@@ -8,13 +8,15 @@
 import { mapGetters } from 'vuex'
 import adminDashboard from './admin'
 import editorDashboard from './editor'
+import workplatform from './workingplatform/index'
 
 export default {
   name: 'Dashboard',
-  components: { adminDashboard, editorDashboard },
+  components: { adminDashboard, editorDashboard, workplatform },
   data() {
     return {
-      currentRole: 'adminDashboard'
+      // currentRole: 'adminDashboard'
+      currentRole: 'workplatform'
     }
   },
   computed: {
