@@ -1,32 +1,35 @@
 <template>
   <div>
-    <el-col :span="22" :offset="1">
-      <el-col :xs="22" :sm="6" class="leftplatform"><user/> </el-col>
-      <el-col :xs="22" :sm="12" class="midplatform">bbbb</el-col>
-      <el-col :xs="22" :sm="6" class="rightplatform">ccccc</el-col>
-    </el-col>
+    <el-row :gutter="10">
+      <el-col :span="22" :offset="1">
+        <el-col :xs="24" :lg="6" class="leftplatform">
+          <user/>
+        </el-col>
+        <el-col :xs="24" :lg="12" class="midplatform"><userapply></userapply> </el-col>
+        <el-col :xs="24" :lg="6" class="rightplatform">ccccc</el-col>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script>
-import user from './component/user'
+import user from "./component/user";
+import userapply from './component/usrapply'
 export default {
-  components: { user },
+  components: { user,userapply },
   data() {
-    return {
-
-    }
+    return {};
   }
-
-}
+};
 </script>
 <style>
 .leftplatform {
   height: 100%;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
 }
 .midplatform {
   height: 100%;
-  background-color: beige;
+  border: 1px rgb(239, 234, 243) solid;
+  /* background-color: beige; */
 }
 .rightplatform {
   height: 100%;

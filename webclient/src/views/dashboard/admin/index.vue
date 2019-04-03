@@ -10,7 +10,6 @@
     </el-row>
 
     <el-row :gutter="24">
-      <div>123456</div>
       <el-col :xs="24" :sm="24" :lg="8">
         <div class="chart-wrapper">
           <raddar-chart/>

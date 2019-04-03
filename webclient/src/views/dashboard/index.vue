@@ -15,8 +15,8 @@ export default {
   components: { adminDashboard, editorDashboard, workplatform },
   data() {
     return {
-      // currentRole: 'adminDashboard'
-      currentRole: 'workplatform'
+      //  currentRole: 'adminDashboard'
+       currentRole: 'workplatform'
     }
   },
   computed: {
