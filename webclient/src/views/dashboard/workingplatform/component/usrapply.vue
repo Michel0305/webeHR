@@ -3,7 +3,7 @@
     <el-table
     :data="toApplydata"
     style="width: 100%">
-    <el-table-column type="expand">
+    <el-table-column type="expand" width="20">
       <template slot-scope="props">
         <el-form label-position="left" inline class="demo-table-expand">
           <el-form-item label="商品名称">
@@ -30,13 +30,57 @@
         </el-form>
       </template>
     </el-table-column>
-    <el-table-column
+    <!-- <el-table-column
         v-for="(item,id) in tbField"
         :key="id"
         header-align="center"
         align="center"        
         :prop="item.prop">
+    </el-table-column> -->
+    <el-table-column
+        header-align="center"
+        align="center"
+        prop="frmType"
+        width="60"
+        >
     </el-table-column>
+    <el-table-column
+        header-align="center"
+        align="center"
+        prop="accountid"
+        width="70">
+    </el-table-column>
+    <el-table-column
+        header-align="center"
+        align="center"
+        prop="fullname"
+        width="60">
+    </el-table-column>
+    <el-table-column
+        header-align="center"
+        align="center"
+        prop="bm"
+        width="120">
+    </el-table-column>    
+    <el-table-column
+        header-align="center"
+        align="center"
+        prop="opDate"
+        width="110">
+    </el-table-column>
+    <el-table-column
+        header-align="center"
+        align="center"
+        prop="dataMsg">
+    </el-table-column>   
+    <el-table-column>
+        <template slot-scope="scope">
+            <el-button size="mini" type="success" circle>准</el-button>
+            <el-button size="mini" type="danger" circle>駁</el-button>
+            {{scope.row.status}}
+        </template>
+    </el-table-column> 
+    
   </el-table>
 
     <!-- <el-collapse v-for="(item,id) in toApplydata" :key="id" @change="collapseChange">
@@ -211,7 +255,7 @@ export default {
   height: 350px;
   border: 1px;
   border-bottom-style: solid #555252;
-  overflow: hidden;
+  overflow: auto;
   overflow-y: auto;
   scrollbar-face-color: #555252;
 }
