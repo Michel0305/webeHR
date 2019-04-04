@@ -5,8 +5,8 @@
         <el-col :xs="24" :lg="6" class="leftplatform">
           <user/>
         </el-col>
-        <el-col :xs="24" :lg="12" class="midplatform"><userapply></userapply> </el-col>
-        <el-col :xs="24" :lg="6" class="rightplatform">ccccc</el-col>
+        <el-col :xs="{span:24,offset:1}" :lg="14" class="midplatform"><userapply></userapply> </el-col>
+        <el-col :xs="{span:24,offset:1}" :lg="4" class="rightplatform">ccccc</el-col>
       </el-col>
     </el-row>
   </div>

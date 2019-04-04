@@ -1,131 +1,72 @@
 <template>
   <div id="usrapply">
-    <el-table
-    :data="toApplydata"
-    style="width: 100%">
-    <el-table-column type="expand" width="20">
-      <template slot-scope="props">
-        <el-form label-position="left" inline class="demo-table-expand">
-          <el-form-item label="商品名称">
-            <span>{{ props.row.name }}</span>
-          </el-form-item>
-          <el-form-item label="所属店铺">
-            <span>{{ props.row.shop }}</span>
-          </el-form-item>
-          <el-form-item label="商品 ID">
-            <span>{{ props.row.id }}</span>
-          </el-form-item>
-          <el-form-item label="店铺 ID">
-            <span>{{ props.row.shopId }}</span>
-          </el-form-item>
-          <el-form-item label="商品分类">
-            <span>{{ props.row.category }}</span>
-          </el-form-item>
-          <el-form-item label="店铺地址">
-            <span>{{ props.row.address }}</span>
-          </el-form-item>
-          <el-form-item label="商品描述">
-            <span>{{ props.row.desc }}</span>
-          </el-form-item>
-        </el-form>
-      </template>
-    </el-table-column>
-    <!-- <el-table-column
-        v-for="(item,id) in tbField"
-        :key="id"
-        header-align="center"
-        align="center"        
-        :prop="item.prop">
-    </el-table-column> -->
-    <el-table-column
-        header-align="center"
-        align="center"
-        prop="frmType"
-        width="60"
-        >
-    </el-table-column>
-    <el-table-column
-        header-align="center"
-        align="center"
-        prop="accountid"
-        width="70">
-    </el-table-column>
-    <el-table-column
-        header-align="center"
-        align="center"
-        prop="fullname"
-        width="60">
-    </el-table-column>
-    <el-table-column
-        header-align="center"
-        align="center"
-        prop="bm"
-        width="120">
-    </el-table-column>    
-    <el-table-column
-        header-align="center"
-        align="center"
-        prop="opDate"
-        width="110">
-    </el-table-column>
-    <el-table-column
-        header-align="center"
-        align="center"
-        prop="dataMsg">
-    </el-table-column>   
-    <el-table-column>
-        <template slot-scope="scope">
-            <el-button size="mini" type="success" circle>准</el-button>
-            <el-button size="mini" type="danger" circle>駁</el-button>
-            {{scope.row.status}}
+    <el-table :data="toApplydata" style="width: 100%">
+      <el-table-column type="expand" width="20">
+        <template slot-scope="props">
+          <el-form label-position="left" inline class="demo-table-expand">
+            <el-form-item label="姓名">
+              <span>{{ props.row.fullname }}</span>
+            </el-form-item>
+            <el-form-item label="工號">
+              <span>{{ props.row.accountid }}</span>
+            </el-form-item>
+            <el-form-item label="部門">
+              <span>{{ props.row.bm }}</span>
+            </el-form-item>
+            <el-form-item label="課別">
+              <span>{{ props.row.kb }}</span>
+            </el-form-item>
+            <el-form-item label="日期/時間">
+              <span>{{ props.row.dateTimes }}</span>
+            </el-form-item>
+            <el-form-item label="原因">
+              <span>{{ props.row.dataMsg }}</span>
+            </el-form-item>
+            <el-form-item>
+                <el-steps :active="1">
+                    <el-step title="送出申請" icon="el-icon-edit"></el-step>
+                    <el-step title="直屬主管" icon="el-icon-people"></el-step>
+                    <el-step title="部門會簽" icon="el-icon-peoples"></el-step>
+                    <el-step title="人資承辦" icon="el-icon-iconfontfuwushichang"></el-step>
+                    <el-step title="申請人打印" icon="el-icon-documentation"></el-step>
+                    <el-step title="完成" icon="el-icon-documentation"></el-step>
+                    </el-steps>
+                </el-form-item>
+          </el-form>
         </template>
-    </el-table-column> 
-    
-  </el-table>
-
-    <!-- <el-collapse v-for="(item,id) in toApplydata" :key="id" @change="collapseChange">
-      <div class="applylab">
-        <label>{{item.fullname}}/{{item.accountid}}</label>
-        <label>{{item.bm}} / {{item.kb}}</label>
-      </div>
-      <div class="btnapply">
-        <el-button size="mini" type="success" circle>准</el-button>
-        <el-button size="mini" type="danger" circle>駁</el-button>
-      </div>
-
-      <el-collapse-item :title="item.frmType" name="id">
-        <div>ssssssss</div>
-      </el-collapse-item>
-    </el-collapse> -->
-
-    <!-- <span v-for="(item,id) in toApplydata " :key="id">
-      <div class="applyspan">
-        <span><h5 class="applyh">{{item.frmType}}</h5></span> 
-        <div class="applylab" >
-            <label>{{item.fullname}}/{{item.accountid}}</label>
-            <label>{{item.bm}} / {{item.kb}}</label>
-        </div>
-        <div class="btnapply">
-            <el-button size="mini" type="success" circle>准</el-button>
-            <el-button size="mini" type="danger" circle>駁</el-button>
-        </div>
-        <div>
-
-        </div>
-        
-      </div>
-
-       {{item}} 
-    </span>-->
+      </el-table-column>
+      <el-table-column header-align="center" align="center" prop="frmType" width="70"></el-table-column>
+      <el-table-column header-align="center" align="center" prop="accountid" width="55"></el-table-column>
+      <el-table-column header-align="center" align="center" prop="fullname" width="70"></el-table-column>
+      <el-table-column header-align="center" align="center" prop="bm" width="130"></el-table-column>
+      <el-table-column header-align="center" align="center" prop="opDate"></el-table-column>
+      <!-- <el-table-column header-align="center" align="center" prop="dataMsg"></el-table-column> -->
+      <el-table-column width="110">
+        <template slot-scope="scope">
+          <el-button size="mini" type="success" circle>准</el-button>
+          <el-button size="mini" type="danger" circle>駁</el-button>
+          {{scope.row.status}}
+        </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
-var tbField = [{label:'',prop:'accountid'},{label:'',prop:'fullname'},{label:'',prop:'bm'},{label:'',prop:'kb'},{label:'',prop:'frmType'},{label:'',prop:'dateTimes'},{label:'',prop:'opDate'},{label:'',prop:'dataMsg'}]
+var tbField = [
+  { label: "", prop: "accountid" },
+  { label: "", prop: "fullname" },
+  { label: "", prop: "bm" },
+  { label: "", prop: "kb" },
+  { label: "", prop: "frmType" },
+  { label: "", prop: "dateTimes" },
+  { label: "", prop: "opDate" },
+  { label: "", prop: "dataMsg" }
+];
 var mnData = [
   {
     accountid: 36208,
-    fullname: "項敏",
+    fullname: "項敏反對",
     bm: "資訊部",
     kb: "課別",
     frmType: "加班單",
@@ -240,7 +181,7 @@ export default {
     return {
       toApplydata: mnData,
       activeName: 1,
-      tbField:tbField,
+      tbField: tbField
     };
   },
   methods: {
@@ -252,11 +193,12 @@ export default {
 <style>
 #usrapply {
   font-size: 12px;
-  height: 350px;
+  height: 550px;
   border: 1px;
   border-bottom-style: solid #555252;
-  overflow: auto;
+  /* overflow: auto; */
   overflow-y: auto;
+  overflow-x: auto;
   scrollbar-face-color: #555252;
 }
 .midplatform el-col el-col-24 el-col-xs-24 el-col-lg-12 {
@@ -268,6 +210,21 @@ export default {
 /* .aaaaaa :hover {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
 }  */
+.el-table{
+    margin: auto;
+}
+.demo-table-expand {
+  font-size: 0;
+}
+.demo-table-expand label {
+  width: 90px;
+  color: #99a9bf;
+}
+.demo-table-expand .el-form-item {
+  margin-right: 0;
+  margin-bottom: 0;
+  width: 100%;
+}
 .applyspan {
   padding: 5px;
   width: 100%;

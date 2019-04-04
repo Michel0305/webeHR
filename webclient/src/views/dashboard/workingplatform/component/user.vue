@@ -90,8 +90,8 @@ export default {
     line-height: 28px;
     font-size: 12px;
 }
-.el-button{
-  margin: 10px 0px 0px 10px;
+.btnfrm .el-button{
+  margin: 0px 0px 15px 10px;
 }
 </style>
 
