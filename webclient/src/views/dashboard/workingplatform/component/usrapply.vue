@@ -23,29 +23,29 @@
               <span>{{ props.row.dataMsg }}</span>
             </el-form-item>
             <el-form-item>
-                <el-steps :active="1">
-                    <el-step title="送出申請" icon="el-icon-edit"></el-step>
-                    <el-step title="直屬主管" icon="el-icon-people"></el-step>
-                    <el-step title="部門會簽" icon="el-icon-peoples"></el-step>
-                    <el-step title="人資承辦" icon="el-icon-iconfontfuwushichang"></el-step>
-                    <el-step title="申請人打印" icon="el-icon-documentation"></el-step>
-                    <el-step title="完成" icon="el-icon-documentation"></el-step>
-                    </el-steps>
-                </el-form-item>
+              <el-steps :active="1" class="setpflow" simple="true" >
+                <el-step title="送出申請"/>
+                <el-step title="直屬主管"/>`
+                <el-step title="部門會簽"/>
+                <el-step title="人資承辦"/>
+                <el-step title="申請人打印"/>
+                <el-step title="完成"/>
+              </el-steps>
+            </el-form-item>
           </el-form>
         </template>
       </el-table-column>
-      <el-table-column header-align="center" align="center" prop="frmType" width="70"></el-table-column>
-      <el-table-column header-align="center" align="center" prop="accountid" width="55"></el-table-column>
-      <el-table-column header-align="center" align="center" prop="fullname" width="70"></el-table-column>
-      <el-table-column header-align="center" align="center" prop="bm" width="130"></el-table-column>
-      <el-table-column header-align="center" align="center" prop="opDate"></el-table-column>
+      <el-table-column header-align="center" align="center" prop="frmType" width="70"/>
+      <el-table-column header-align="center" align="center" prop="accountid" width="65"/>
+      <el-table-column header-align="center" align="center" prop="fullname" width="70"/>
+      <el-table-column header-align="center" align="center" prop="bm" width="130"/>
+      <el-table-column header-align="center" align="center" prop="opDate"/>
       <!-- <el-table-column header-align="center" align="center" prop="dataMsg"></el-table-column> -->
       <el-table-column width="110">
         <template slot-scope="scope">
           <el-button size="mini" type="success" circle>准</el-button>
           <el-button size="mini" type="danger" circle>駁</el-button>
-          {{scope.row.status}}
+          {{ scope.row.status }}
         </template>
       </el-table-column>
     </el-table>
@@ -54,127 +54,127 @@
 
 <script>
 var tbField = [
-  { label: "", prop: "accountid" },
-  { label: "", prop: "fullname" },
-  { label: "", prop: "bm" },
-  { label: "", prop: "kb" },
-  { label: "", prop: "frmType" },
-  { label: "", prop: "dateTimes" },
-  { label: "", prop: "opDate" },
-  { label: "", prop: "dataMsg" }
-];
+  { label: '', prop: 'accountid' },
+  { label: '', prop: 'fullname' },
+  { label: '', prop: 'bm' },
+  { label: '', prop: 'kb' },
+  { label: '', prop: 'frmType' },
+  { label: '', prop: 'dateTimes' },
+  { label: '', prop: 'opDate' },
+  { label: '', prop: 'dataMsg' }
+]
 var mnData = [
   {
     accountid: 36208,
-    fullname: "項敏反對",
-    bm: "資訊部",
-    kb: "課別",
-    frmType: "加班單",
-    dateTimes: "2019-04-23 07:30:00 ~ 2019-04-23 21:30:00",
-    opDate: "2019-04-03",
-    dataMsg: "因工作需求需要處理很多很多的事情"
+    fullname: '項敏反對',
+    bm: '資訊部',
+    kb: '課別',
+    frmType: '加班單',
+    dateTimes: '2019-04-23 07:30:00 ~ 2019-04-23 21:30:00',
+    opDate: '2019-04-03',
+    dataMsg: '因工作需求需要處理很多很多的事情'
   },
   {
     accountid: 36208,
-    fullname: "項敏",
-    bm: "資訊部",
-    kb: "課別",
-    frmType: "加班單",
-    dateTimes: "2019-04-23 07:30:00 ~ 2019-04-23 21:30:00",
-    opDate: "2019-04-03",
-    dataMsg: "因工作需求需要處理很多很多的事情"
+    fullname: '項敏',
+    bm: '資訊部',
+    kb: '課別',
+    frmType: '加班單',
+    dateTimes: '2019-04-23 07:30:00 ~ 2019-04-23 21:30:00',
+    opDate: '2019-04-03',
+    dataMsg: '因工作需求需要處理很多很多的事情'
   },
   {
     accountid: 45678,
-    fullname: "張三",
-    bm: "物料部放射性輻射",
-    kb: "上發射點發射點",
-    frmType: "請假單",
-    dateTimes: "2019-04-23 07:30:00 ~ 2019-04-23 21:30:00",
-    opDate: "2019-04-03",
-    dataMsg: "特殊原因請假"
+    fullname: '張三',
+    bm: '物料部放射性輻射',
+    kb: '上發射點發射點',
+    frmType: '請假單',
+    dateTimes: '2019-04-23 07:30:00 ~ 2019-04-23 21:30:00',
+    opDate: '2019-04-03',
+    dataMsg: '特殊原因請假'
   },
   {
     accountid: 48545,
-    fullname: "維斯",
-    bm: "財務",
-    kb: "會計",
-    frmType: "調休",
-    dateTimes: "2019-04-23 07:30:00 ~ 2019-04-23 21:30:00",
-    opDate: "2019-04-03",
-    dataMsg: "工作需求所以要調休"
+    fullname: '維斯',
+    bm: '財務',
+    kb: '會計',
+    frmType: '調休',
+    dateTimes: '2019-04-23 07:30:00 ~ 2019-04-23 21:30:00',
+    opDate: '2019-04-03',
+    dataMsg: '工作需求所以要調休'
   },
   {
     accountid: 36208,
-    fullname: "項敏",
-    bm: "資訊部",
-    kb: "課別",
-    frmType: "加班單",
-    dateTimes: "2019-04-23 07:30:00 ~ 2019-04-23 21:30:00",
-    opDate: "2019-04-03",
-    dataMsg: "因工作需求需要處理很多很多的事情"
+    fullname: '項敏',
+    bm: '資訊部',
+    kb: '課別',
+    frmType: '加班單',
+    dateTimes: '2019-04-23 07:30:00 ~ 2019-04-23 21:30:00',
+    opDate: '2019-04-03',
+    dataMsg: '因工作需求需要處理很多很多的事情'
   },
   {
     accountid: 12542,
-    fullname: "龍九",
-    bm: "製造部",
-    kb: "MFD4",
-    frmType: "加班單",
-    dateTimes: "2019-04-23 07:30:00 ~ 2019-04-23 21:30:00",
-    opDate: "2019-04-03",
-    dataMsg: "好好的就是要加班"
+    fullname: '龍九',
+    bm: '製造部',
+    kb: 'MFD4',
+    frmType: '加班單',
+    dateTimes: '2019-04-23 07:30:00 ~ 2019-04-23 21:30:00',
+    opDate: '2019-04-03',
+    dataMsg: '好好的就是要加班'
   },
   {
     accountid: 36208,
-    fullname: "項敏",
-    bm: "資訊部",
-    kb: "課別",
-    frmType: "加班單",
-    dateTimes: "2019-04-23 07:30:00 ~ 2019-04-23 21:30:00",
-    opDate: "2019-04-03",
-    dataMsg: "因工作需求需要處理很多很多的事情"
+    fullname: '項敏',
+    bm: '資訊部',
+    kb: '課別',
+    frmType: '加班單',
+    dateTimes: '2019-04-23 07:30:00 ~ 2019-04-23 21:30:00',
+    opDate: '2019-04-03',
+    dataMsg: '因工作需求需要處理很多很多的事情'
   },
   {
     accountid: 45682,
-    fullname: "皮廣義",
-    bm: "研發",
-    kb: "機構",
-    frmType: "加班單",
-    dateTimes: "2019-04-23 07:30:00 ~ 2019-04-23 21:30:00",
-    opDate: "2019-04-03",
-    dataMsg: "嗯 來了就是加班的"
+    fullname: '皮廣義',
+    bm: '研發',
+    kb: '機構',
+    frmType: '加班單',
+    dateTimes: '2019-04-23 07:30:00 ~ 2019-04-23 21:30:00',
+    opDate: '2019-04-03',
+    dataMsg: '嗯 來了就是加班的'
   },
   {
     accountid: 36208,
-    fullname: "項敏",
-    bm: "資訊部",
-    kb: "課別",
-    frmType: "加班單",
-    dateTimes: "2019-04-23 07:30:00 ~ 2019-04-23 21:30:00",
-    opDate: "2019-04-03",
-    dataMsg: "因工作需求需要處理很多很多的事情"
+    fullname: '項敏',
+    bm: '資訊部',
+    kb: '課別',
+    frmType: '加班單',
+    dateTimes: '2019-04-23 07:30:00 ~ 2019-04-23 21:30:00',
+    opDate: '2019-04-03',
+    dataMsg: '因工作需求需要處理很多很多的事情'
   },
   {
     accountid: 24587,
-    fullname: "游記都",
-    bm: "業務部",
-    kb: "出口",
-    frmType: "加班單",
-    dateTimes: "2019-04-23 07:30:00 ~ 2019-04-23 21:30:00",
-    opDate: "2019-04-03",
-    dataMsg: "又是來加班的"
+    fullname: '游記都',
+    bm: '業務部',
+    kb: '出口',
+    frmType: '加班單',
+    dateTimes: '2019-04-23 07:30:00 ~ 2019-04-23 21:30:00',
+    opDate: '2019-04-03',
+    dataMsg: '又是來加班的'
   },
   {
     accountid: 36208,
-    fullname: "項敏",
-    bm: "資訊部",
-    kb: "課別",
-    frmType: "加班單",
-    dateTimes: "2019-04-23 07:30:00 ~ 2019-04-23 21:30:00",
-    opDate: "2019-04-03",
-    dataMsg: "因工作需求需要處理很多很多的事情"
+    fullname: '項敏',
+    bm: '資訊部',
+    kb: '課別',
+    frmType: '加班單',
+    dateTimes: '2019-04-23 07:30:00 ~ 2019-04-23 21:30:00',
+    opDate: '2019-04-03',
+    dataMsg: '因工作需求需要處理很多很多的事情'
   }
-];
+]
 
 export default {
   data() {
@@ -182,12 +182,12 @@ export default {
       toApplydata: mnData,
       activeName: 1,
       tbField: tbField
-    };
+    }
   },
   methods: {
     collapseChange() {}
   }
-};
+}
 </script>
 
 <style>
@@ -210,8 +210,8 @@ export default {
 /* .aaaaaa :hover {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
 }  */
-.el-table{
-    margin: auto;
+.el-table {
+  margin: auto;
 }
 .demo-table-expand {
   font-size: 0;
@@ -243,8 +243,8 @@ export default {
   width: 85px;
 }
 .applylab label {
-  /* border:1px;  
-  border-right-style: solid;  
+  /* border:1px;
+  border-right-style: solid;
   border-left-style: solid;   */
   /* position:initial; */
   text-align: center;
@@ -258,6 +258,14 @@ export default {
 .applylab {
   /* float: left; */
   width: 260px;
+}
+
+.el-table--medium td,
+.el-table--medium th {
+  padding: 1px 0;
+}
+.setpflow{
+  font-size: 12px;
 }
 
 #usrapply::-webkit-scrollbar {
