@@ -25,7 +25,30 @@ router.get('/userleaves',(req,res,next)=>{
 })
 
 /**
- * 新生數據
+ * 驗證請假數據
+ */
+router.post('/checkleaves',(req,res,next)=>{
+    var testData = [{
+        accountid:'36208',
+        fullname:'項敏',
+        leaveType: '0',
+        startDate: '2019-04-08 07:00:00',
+        endDate: '2019-04-08 09:30:00',
+        remark: '測試請假',
+        agentUsr: '17959',
+        dateCount: '2.5',
+        dateuom: '小时',
+        opid:'36208'
+    }]
+    leaveBase.checkLeavesStatus(testData).then((result)=>{
+       res.send(result);
+    }).catch(err=>{
+       res.send(err);
+    })
+})
+
+/**
+ * 新增
  */
 router.post('/inleaves',(req,res,next)=>{
     var testData = [{
@@ -37,14 +60,16 @@ router.post('/inleaves',(req,res,next)=>{
         remark: '測試請假',
         agentUsr: '17959',
         dateCount: '2.5',
-        dateuom: '小时'
+        dateuom: '小时',
+        opid:'36208'
     }]
-    leaveBase.inforLeaves(testData).then((rs)=>{
-        res.send(rs)
+    leaveBase.checkLeavesStatus(testData).then((result)=>{
+        leaveBase.insertLeave(result).then(res=>{
+            console.log(res)
+        })
     }).catch(err=>{
-        console.log(err);
+       res.send(err);
     })
-    
 
 })
 

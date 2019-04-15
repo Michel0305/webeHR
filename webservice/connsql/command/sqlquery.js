@@ -7,7 +7,16 @@ module.exports = {
         getAllLeave: ` select * from RES_HR_RSQJ `,
         getParamsLeave:` select * from RES_HR_RSQJ where 1=1 and convert(nvarchar(7),KSRQ,23) = convert(nvarchar(7),getdate(),23)`,
         getUserLeaveMinute:` select COUNT(*) as cnt,isnull(SUM(RQCD),0) as daycnt,isnull(SUM(DATEPART(HOUR,SJCD)),0) as hourcnt,isnull(SUM(DATEPART(MINUTE,sjcd)),0) as minutecnt from RES_HR_RSQJ where 1=1 and convert(nvarchar(7),KSRQ,23) = convert(nvarchar(7),getdate(),23) `,
-        checkLeaveDate:` select dbo.leaveForCheck`
+        checkLeaveDate:` select dbo.leaveForCheck`,
+        insertLeave:` insert into RES_HR_RSQJ(GH,XM,KSRQ,JSRQ,RQCD,QJLB,KSSJ,SJCD,QJYY,OPID,Agent_GH) VALUES `,        
+    },
+    base:{
+        getDate:` select GETDATE() as dtNow ,CONVERT(nvarchar(10),GETDATE(),23) as dtDate,CONVERT(nvarchar(8),GETDATE(),24) as dtTime,
+		DATEPART(YEAR,GETDATE()) as dtYear,DATEPART(MONTH,GETDATE()) dtMonth,
+		DATEPART(DAY,GETDATE()) as dtDay,DATEPART(HOUR,GETDATE()) as dtHour,DATEPART(MINUTE,GETDATE()) as dtMinute,
+		DATEPART(SECOND,GETDATE()) as dtSecond,DATEPART(WEEKDAY,GETDATE()) as dtWeekday,DATEPART(WEEK,GETDATE()) as dtWeek,
+		DATEPART(DAYOFYEAR,GETDATE()) as dtDayifyear,REPLACE(REPLACE(REPLACE(CONVERT(nvarchar(30),GETDATE(),20),'-',''),' ',''),':','') as strDate `
     }
+
 
 }
