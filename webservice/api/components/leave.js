@@ -3,13 +3,15 @@ var sqlQuery = require('../../connsql/command/sqlquery');
 var dateutils = require('date-utils');
 var moment = require('moment');
 var basecomm = require('./base');
+var conf = require('../../conf/config');
 
-leavesBase = function () { }
+leavesBase = () => { }
+
 /**
  * 獲取用戶當月請假的次數,天數,小時數
  * @param {*} userid 
  */
-function getUserLeaveMonth(userid) {
+getUserLeaveMonth = (userid) => {
     let paramsQuery = sqlQuery.queryLeave.getUserLeaveMinute + ` and  GH='` + userid + `'`
     return new Promise((resolve, reject) => {
         msDB.dbQuery(paramsQuery, (err, res) => {
@@ -26,7 +28,7 @@ function getUserLeaveMonth(userid) {
  * 获取全新保存數據庫數據
  * @param {*} info 
  */
-function getLeaveDate(info) {
+getLeaveDate = (info) => {
     return new Promise((resolve, reject) => {
         let promisList = [];
         for (let i = 0; i < info.length; i++) {
@@ -56,7 +58,8 @@ function getLeaveDate(info) {
                         dateCount: stLeave ? el.dateCount : 0,
                         timesCount: timeCount,
                         releaveCount: reBackData.leavesCnt,
-                        opid:el.opid
+                        opid: el.opid,
+                        autoid: el.autoid
                     }
                     resolve(inData);
                 }).catch(err => {
@@ -77,13 +80,13 @@ function getLeaveDate(info) {
  * 驗證請假單可用性
  * @param {*} infoData 
  */
-function checkPassLeave(infoData) {
+checkPassLeave = (infoData) => {
     return new Promise((resolve, reject) => {
         const el = infoData[0];
-        msDB.dbQuery(sqlQuery.queryLeave.checkLeaveDate + `(${el.leaveType},${el.accountid},'${el.startTimes}','${el.timesCount}','${el.agentUsr}') as ispass`, (err, res) => {
+        msDB.dbQuery(sqlQuery.queryLeave.checkLeaveDate + `(${el.leaveType},${el.accountid},'${el.startTimes}','${el.timesCount}','${el.agentUsr}','${el.autoid}') as ispass`, (err, res) => {
             if (err) {
                 reject({ error: true, msg: "CheckPassLeave Error" })
-            } else {         
+            } else {
                 let userLeave = res.recordset[0]
                 userLeave.accountid = infoData[0].accountid;
                 userLeave.fullname = infoData[0].fullname;
@@ -97,6 +100,7 @@ function checkPassLeave(infoData) {
                 userLeave.timesCount = infoData[0].timesCount;
                 userLeave.releaveCount = infoData[0].releaveCount;
                 userLeave.opid = infoData[0].opid;
+                userLeave.autoid = infoData[0].autoid;
                 resolve(userLeave) // 範圍驗證結果 0 假日日期重合  1 假期日期驗證通過  2 假日日期無年休  3 代理人請假日期重合
             }
         })
@@ -138,40 +142,64 @@ leavesBase.paramsGetData = (params = null) => {
     })
 }
 
+/**
+ * 確認請假是否有效
+ * 
+ */
 leavesBase.checkLeavesStatus = (infoData) => {
     async function checkStatus() {
         return getLeaveDate(infoData).then((result) => {
+            console.log(result);
             return checkPassLeave(result)
         })
     }
     return checkStatus()
 }
 
-leavesBase.insertLeave = (leaveData) => {    
-     basecomm.getSqlData().then((sss)=>{
-        console.log(sss);
-     })    
-    return;
-    if(leaveData.ispass !==1){
-       return Promise.reject(); 
-    }else{         
-        //GH,XM,KSRQ,JSRQ,RQCD,QJLB,KSSJ,SJCD,QJYY,OPI
-        let sqlLine = sqlQuery.queryLeave.insertLeave + `('${leaveData.accountid}','${leaveData.fullname}',
-        '${leaveData.startDate}','${leaveData.endDate}',
-        '${leaveData.dateCount}',
-        '${leaveData.leaveType}','${leaveData.startTimes}',
-        '${leaveData.timesCount}','${leaveData.remark}',
-        '${leaveData.opid}','${leaveData.agentUsr}')`
-        msDB.dbQuery(sqlLine,(err,rows)=>{
-            if(err){
-                return Promise.reject();
-            }else{
-                return Promise.resolve(rows);
+/**
+ * 保存請假單
+ */
+leavesBase.insertLeave = (leaveData) => {
+    async function tmpSqlDate() {
+        let dates = await basecomm.getSqlDate();
+        let leaveid = await basecomm.getLeaveID();
+        return Promise.all([dates, leaveid])
+    }
+    return new Promise((resolve, reject) => {
+        tmpSqlDate().then((result) => {
+            conf.vuex = result[0].recordset;
+            let leaveid = `00000${result[1].recordset[0].id + 1}`;
+            let leaveDH = `${conf.formtype.leave}${conf.vuex[0].strdate}${leaveid.substr(leaveid.length - 4, 4)}`
+            if (leaveData.ispass !== 1) {
+                reject({ success: false, msg: '日期驗證失敗' });
+            } else {
+                //GH,XM,KSRQ,JSRQ,RQCD,QJLB,KSSJ,SJCD,QJYY,OPI
+                let sqlLine = sqlQuery.queryLeave.insertLeave + `('${leaveDH}','${leaveData.accountid}','${leaveData.fullname}',
+                '${leaveData.startDate}','${leaveData.endDate}',
+                '${leaveData.dateCount}',
+                '${leaveData.leaveType}','${leaveData.startTimes}',
+                '${leaveData.timesCount}','${leaveData.remark}',
+                '${leaveData.opid}','${leaveData.agentUsr}')`
+                msDB.dbQuery(sqlLine, (err, rows) => {
+                    if (err) {
+                        reject({ success: false, msg: '數據保存失敗' });
+                    } else {
+                        console.log(rows);
+                        resolve({ success: true, msg: rows });
+                    }
+                })
             }
         })
-    }
+    })
 }
 
+/**
+ * 更新修改請假單
+ */
+leavesBase.upgradeLeave = (leaveData) => {
+ console.log(sqlQuery.queryLeave.updateLeave.toString(), leaveData.leaveType, leaveData.startDate, leaveData.endDate, leaveData.dateCount, leaveData.startTimes, leaveData.timesCount, leaveData.remark, leaveData.autoid)
+ console.log(aaa);
 
+}
 
 module.exports = leavesBase;

@@ -11,5 +11,7 @@ module.exports = {
     min: 0,
     max: 10,
     idleTimeoutMillis: 3000
-  }
+  },
+  vuex:[],
+  formtype:{leave:'L'}
 }

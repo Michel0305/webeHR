@@ -1,7 +1,7 @@
 var msDB = require('../../connsql/mssql');
 var sqlQuery = require('../../connsql/command/sqlquery');
 
-userBaseData = function () {
+var userBaseData = function () {
 }
 
 userBaseData.getAllUser = () => {

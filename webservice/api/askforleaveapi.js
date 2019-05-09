@@ -61,22 +61,43 @@ router.post('/inleaves',(req,res,next)=>{
         agentUsr: '17959',
         dateCount: '2.5',
         dateuom: '小时',
-        opid:'36208'
+        opid:'36208',
+        autoid:'0'
     }]
     leaveBase.checkLeavesStatus(testData).then((result)=>{
-        leaveBase.insertLeave(result).then(res=>{
-            console.log(res)
+        leaveBase.insertLeave(result).then((res)=>{
+           res.send(res)
+        }).catch((err)=>{
+            res.send(err);
         })
-    }).catch(err=>{
+    }).catch((err)=>{
        res.send(err);
     })
-
 })
 
 /**
  * 修改
  */
 router.post('/releaves',(req,res,next)=>{
+    var testData = [{
+        accountid:'36208',
+        fullname:'項敏',
+        leaveType: '0',
+        startDate: '2019-04-08 07:00:00',
+        endDate: '2019-04-08 09:30:00',
+        remark: '測試請假',
+        agentUsr: '17959',
+        dateCount: '2.5',
+        dateuom: '小时',
+        opid:'36208',
+        autoid:'91925'
+    }]
+    leaveBase.checkLeavesStatus(testData).then((result)=>{
+        // console.log(result);
+        leaveBase.upgradeLeave(result);
+    }).catch((err)=>{
+       res.send(err);
+    })
 
 })
 
