@@ -6,29 +6,13 @@
     </div>
     <div class="weathericon">
       <img src="../static/img/01.png" alt="" srcset="">
-    </div>
-    <div class="weatherdata" >
-      <el-form label-position="left" label-width="80px">
-        <el-form-item label="城市" >
-          广东/东莞
-        </el-form-item>
-        <el-form-item label="湿度" >
-          83%
-        </el-form-item>
-        <el-form-item label="pm2.5" >
-          2.3 ~2.7
-        </el-form-item>
-        <el-form-item label="空气质量">
-          优
-        </el-form-item>
-        <el-form-item label="温度">
-          24
-        </el-form-item>
-        <el-form-item label="郊外">
-          各类人群可自由活动
-        </el-form-item>
-
-      </el-form>
+      <ul class="wdata">
+        <li>城市:广东/东莞</li>
+        <li>湿度:湿度</li>
+        <li>PM值:2.3 ~2.7</li>
+        <li>空气质量:优</li>
+        <li>温度:24</li>
+      </ul>
     </div>
   </div>
 </template>
@@ -44,21 +28,40 @@ export default {
         text-align: center;
     }
     .weatherhead h6{
-        margin: 15px 0 0 0;
+        margin: 5px 0 0 0;
     }
     #weatherdom{
         margin-left: 2px;
         height: 200px;
         width: 100%;
         border: 1px solid #ece8ec;
+        font-size: 0.8rem;
         /* background-image: url('../../../../../static/img/qingtian.png'); */
+    }
+    .wdata{
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
+
+    }
+    .wdata li{
+      /* position:absolute; */
+      padding: 2px;
     }
     .weathericon{
         padding: 0px;
         text-align: center;
+        position: relative;
     }
     .weathericon img{
-        height: 90px;
-        width: 100px;
+        height: 60px;
+        width: 60px;
+        animation: weicon 2s infinite;
+    }
+
+    @keyframes weicon {
+      0% {transform: scale(1)}
+      50% {transform: scale(1.3)}
+      100% {transform: scale(1)}
     }
 </style>

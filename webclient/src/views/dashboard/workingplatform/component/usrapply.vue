@@ -1,7 +1,8 @@
 <template>
   <div id="usrapply">
+    <h3>签核箱</h3>
     <el-table :data="toApplydata" style="width: 100%">
-      <el-table-column type="expand" width="20">
+      <el-table-column type="expand" width="20" class="contents">
         <template slot-scope="props">
           <el-form label-position="left" inline class="demo-table-expand">
             <el-form-item label="姓名">
@@ -23,14 +24,7 @@
               <span>{{ props.row.dataMsg }}</span>
             </el-form-item>
             <el-form-item>
-              <el-steps :active="1" class="setpflow" simple="true" >
-                <el-step title="送出申請"/>
-                <el-step title="直屬主管"/>`
-                <el-step title="部門會簽"/>
-                <el-step title="人資承辦"/>
-                <el-step title="申請人打印"/>
-                <el-step title="完成"/>
-              </el-steps>
+              送出申請  -> 直屬主管 -> 部門會簽 -> 人資承辦 -> 申請人打印 -> 完成
             </el-form-item>
           </el-form>
         </template>
@@ -193,7 +187,7 @@ export default {
 <style>
 #usrapply {
   font-size: 12px;
-  height: 550px;
+  height: 350px;
   border: 1px;
   border-bottom-style: solid #555252;
   /* overflow: auto; */
@@ -233,7 +227,6 @@ export default {
   border-bottom-style: dotted;
   /* box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); */
 }
-
 .applyh {
   float: left;
   margin: 20px 10px 0px 10px;
@@ -269,9 +262,10 @@ export default {
 }
 
 #usrapply::-webkit-scrollbar {
-  height: 2px;
-  width: 2px;
+  height: 5px;
+  width: 5px;
 }
+
 #usrapply::-webkit-scrollbar-button {
   height: 0;
   width: 0;
@@ -329,5 +323,11 @@ export default {
   -webkit-box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.14),
     inset -1px -1px 0 rgba(0, 0, 0, 0.07);
   background-color: rgba(0, 0, 0, 0.05);
+}
+.el-form-item--medium .el-form-item__content, .el-form-item--medium .el-form-item__label {
+    line-height: 25px;
+}
+.el-table__expanded-cell[class*=cell] {
+    padding: 10px 30px;
 }
 </style>

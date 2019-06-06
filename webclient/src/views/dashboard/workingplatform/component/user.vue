@@ -1,46 +1,27 @@
 <template>
-  <div>
-    <el-card shadow="hover" :body-style="{ padding: '0px' }">
-      <el-form ref="userDatafrm" label-position="left" :model="userDatafrm" label-width="65px" size="mini" >
-        <el-row>
-          <el-col :span="12" :offset="1" style="margin-top:30px">
-            <el-col :span="24">
-              <el-form-item label="姓名:">{{userDatafrm.userName}}大多</el-form-item>
-            </el-col>
-            <el-col :span="24">
-              <el-form-item label="工號:">{{userDatafrm.accountId}}</el-form-item>
-            </el-col>
-            <el-col :span="24">
-              <el-form-item label="部門:">{{userDatafrm.department}}儘管吩咐</el-form-item>
-            </el-col>
-            <el-col :span="24">
-              <el-form-item label="課別:">{{userDatafrm.className}}</el-form-item>
-            </el-col>
-          </el-col>
-          <el-col :span="10">
-            <img :src="userImg" alt="IMG" srcset class="userimg">
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="23" :offset="1">
-            <el-form-item label="家庭住址:">{{userDatafrm.address}}</el-form-item>
-          </el-col>
-          <el-col :span="23" :offset="1">
-            <el-form-item label="郵箱:">{{userDatafrm.email}}</el-form-item>
-          </el-col>
-          <el-col :span="23" :offset="1">
-            <el-form-item label="手機:">{{userDatafrm.iphone}}</el-form-item>
-          </el-col>
-        </el-row>
-        <el-row :gutter="0" class="btnfrm">
-          <el-button size="mini" type="primary">加班</el-button>
-          <el-button size="mini" type="primary">請假</el-button>
-          <el-button size="mini" type="primary">洽工</el-button>
-          <el-button size="mini" type="primary">調休</el-button>
-          <el-button size="mini" type="primary">離職</el-button>
-        </el-row>
-      </el-form>
-    </el-card>
+  <div class="curuser">
+    <h4>个人资讯</h4>
+    <div class="usrdata">
+      <ul>
+        <li>姓名:{{ userDatafrm.userName }}大多</li>
+        <li>工號:{{ userDatafrm.accountId }}</li>
+        <li>部門:{{ userDatafrm.department }}</li>
+        <li>課別:{{ userDatafrm.className }}</li>
+        <li>家庭住址:{{ userDatafrm.address }}</li>
+        <li>郵箱:{{ userDatafrm.email }}</li>
+        <li>手機:{{ userDatafrm.iphone }}</li>
+      </ul>
+    </div>
+    <div class="userimg">
+      <img :src="userImg" alt="IMG" srcset class="userimg">
+    </div>
+    <div class="btnfun">
+      <el-button size="mini" type="primary">加班</el-button>
+      <el-button size="mini" type="primary">請假</el-button>
+      <el-button size="mini" type="primary">洽工</el-button>
+      <el-button size="mini" type="primary">調休</el-button>
+      <el-button size="mini" type="primary">離職</el-button>
+    </div>
   </div>
 </template>
 <script>
@@ -49,49 +30,68 @@ export default {
   data() {
     return {
       userImg:
-        "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80",
+        'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80',
       userDatafrm: {
-        userName: "項敏",
-        accountId: "36208",
-        department: "資訊部",
-        className: "維護組",
-        address: "安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號",
-        email: "xm@geniusnet.com.tw",
-        iphone: "18664075908"
+        userName: '項敏',
+        accountId: '36208',
+        department: '資訊部',
+        className: '維護組',
+        address: '安徽省安慶市宿松縣五里鄉黎沖村窯屋組16號',
+        email: 'xm@geniusnet.com.tw',
+        iphone: '18664075908'
       }
-    };
+    }
   }
-};
+}
 </script>
 <style>
-.userimg {
-  /* float: left; */
+.curuser{
+  font-size: 13px;
+  position: relative;
+  border: 1px solid rgb(239, 234, 243);
+  padding: 5px;
+  clear: both;
+  /* 清除浮动效果，div 撑开 */
+  height: 350px;
+}
+.usrdata{
+  margin: 15px 0px 0px 0px;
+}
+
+.usrdata ul{
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+h4{
+  /* padding: 0px; */
+  margin: 10px 30px;
+
+}
+
+.usrdata ul>li{
+  margin: 8px;
+}
+.userimg img{
   width: 80px;
   height: 80px;
-  margin: 30px 00px 00px 20px;
-  /*上右下左*/
-  /* z-index: 999; */
-  /* right: 10px; */
+  position: absolute;
+  top: 35px;
+  right: 30px;
 }
-.el-form-item {
-  font-size: 10px;
-  padding-bottom: 0px;
-  margin-bottom: 0px;
+.btnfun button{
+  margin-left: 10px;
 }
-.el-form-item--mini.el-form-item,
-.el-form-item--small.el-form-item {
-  font-size: 12px;
-  margin-bottom: 5px;
+.el-button+.el-button{
+  margin-top:5px;
 }
-.el-form-item__content{
-  font-size: 12px;
+.el-table--mini td, .el-table--mini th{
+  padding: 0px;
 }
-.el-form-item--mini .el-form-item__content, .el-form-item--mini .el-form-item__label {
-    line-height: 28px;
-    font-size: 12px;
-}
-.btnfrm .el-button{
-  margin: 0px 0px 15px 10px;
+
+.btnfun{
+  bottom: 10px;
 }
 </style>
 
