@@ -1,6 +1,8 @@
 <template>
   <div class="curuser">
-    <h4>个人资讯</h4>
+    <div class="urtitle">
+      <h6>个人资讯</h6>
+    </div>    
     <div class="usrdata">
       <ul>
         <li>姓名:{{ userDatafrm.userName }}大多</li>
@@ -45,11 +47,15 @@ export default {
 }
 </script>
 <style>
+.urtitle{
+  height: 30px;
+  background-color:rgba(0, 0,0, .05);  
+}
 .curuser{
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: bold;
   position: relative;
   border: 1px solid rgb(239, 234, 243);
-  padding: 5px;
   clear: both;
   /* 清除浮动效果，div 撑开 */
   height: 350px;
@@ -66,32 +72,35 @@ export default {
 
 h4{
   /* padding: 0px; */
-  margin: 10px 30px;
+  margin: 10px;
 
 }
 
 .usrdata ul>li{
-  margin: 8px;
+  margin: 15px;
 }
 .userimg img{
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   position: absolute;
-  top: 35px;
+  top: 50px;
   right: 30px;
 }
 .btnfun button{
-  margin-left: 10px;
+  padding: 8px 12px 8px 12px;
+  margin: 0px 0px 0px 10px;
 }
 .el-button+.el-button{
-  margin-top:5px;
+  margin:0px;
 }
 .el-table--mini td, .el-table--mini th{
   padding: 0px;
 }
 
 .btnfun{
+  position: absolute;
   bottom: 10px;
 }
+
 </style>
 

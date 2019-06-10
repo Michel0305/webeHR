@@ -1,42 +1,21 @@
 <template>
-  <div>
+  <div class="curUsrtemplate">
     <el-row :gutter="0">
-      <toolsbar/>
+        <toolsbar/>
     </el-row>
     <el-row :gutter="0">
-      <el-col :xs="{span: 22, offset: 1}" :sm="{span: 15, offset: 1}" class="signbox">
-        <userapply/>
-        <!-- <history/> -->
-        <!-- <el-col :xs="{span: 22, offset: 1}" :lg="5" class="leftplatform">
-          <el-row>
-            <user />
-          </el-row>
-          <el-row>
-            <history/>
-          </el-row>
-        </el-col>
-        <el-col :xs="{span: 22, offset: 1}" :lg="14" class="midplatform">
-          <userapply/>
-          <announcement/>
-        </el-col>
-        <el-col :xs="{span: 22, offset: 1}" :lg="5" class="rightplatform">
-          <el-row>
-            <usercompoent/>
-          </el-row>
-          <el-row>
-            <todo/>
-          </el-row>
-        </el-col> -->
+      <el-col :xs="{span: 24 }" :sm="{span: 15}" class="signbox">
+        <userapply/>        
       </el-col>
-      <el-col :xs="{span: 22, offset: 1}" :sm="{span: 7}" class="usrbox">
+      <el-col :xs="{span: 24}" :sm="{span: 7 ,offset:1}" class="usrbox">
         <user />
       </el-col>
     </el-row>
     <el-row :gutter="0">
-      <el-col :xs="{span: 22, offset: 1}" :sm="{span: 11}" class="cnmentbox">
+      <el-col :xs="{span: 24}" :sm="{span: 11 }" class="cnmentbox">
         <announcement/>
       </el-col>
-      <el-col :xs="{span: 22, offset: 1}" :sm="{span: 11}" class="todobox">
+      <el-col :xs="{span: 24}" :sm="{span: 11 ,offset:1}" class="todobox">
         <todo/>
       </el-col>
     </el-row>
@@ -69,40 +48,37 @@ export default {
 </script>
 
 <style>
-.signbox{
-  margin: 20px;
+ .curUsrtemplate{
+   width: 90%;
+   margin: 0 auto;
+ }
+ .signbox{
+  padding: 0px; 
   border: 1px solid rgb(239, 234, 243);
-  margin-left: 35px;
-}
+  margin-top: 20px; 
+  /* margin-left: 35px; */
+ }
+
 .cnmentbox{
-  margin: 15px auto;
-  margin-left:30px;
+  margin-top: 20px;
 }
 .usrbox{
   margin-top: 20px;
-  margin-left: 30px;
 }
 .leftplatform {
-
     height: 100%;
-    /* background-color: aquamarine; */
 }
 
 .midplatform {
-    /* height: 262px; */
     border: 1px rgb(239, 234, 243) solid;
-    /* background-color: beige; */
 }
 
 .rightplatform {
     height: 100%;
-    /* background-color: blueviolet; */
 }
 .todobox{
-
+  margin-top: 20px;
   border: 1px solid rgb(239, 234, 243);
-  margin: 15px auto;
-  margin-left: 30px;
-
-}
+  height: 380px;
+} 
 </style>

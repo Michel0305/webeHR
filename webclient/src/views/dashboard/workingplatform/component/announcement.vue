@@ -1,6 +1,12 @@
 <template>
   <div class="announcement" >
-    <el-table
+    <div class="urtitle">
+      <h6>
+        公告
+      </h6>
+    </div>
+    <div>
+      <el-table
       :data="anment"
       style="width: 100%">
       <el-table-column
@@ -16,6 +22,7 @@
         label="公布部门"
       />
     </el-table>
+    </div>    
   </div>
 </template>
 <script>

@@ -1,16 +1,16 @@
 <template>
   <div>
     <el-row :gutter="0">
-      <el-col :xs="{span:10 , offset:1 }" :sm="{span:5 , offset:1}" class="toolsbar signin ">
+      <el-col :xs="{span:11 }" :sm="{span:5}" class="toolsbar signin ">
         <div>
           <h3>签到</h3>
           <el-button type="primary">签到</el-button>
           <el-button type="primary">签退</el-button>
         </div>
       </el-col>
-      <el-col :xs="{span:10 , offset:1}" :sm="{span:5 ,offset:1}" class="toolsbar workform"> <h3>表单</h3> </el-col>
-      <el-col :xs="{span:10 , offset:1}" :sm="{span:5 ,offset:1}" class="toolsbar addressbook"> <h3>通讯录</h3> </el-col>
-      <el-col :xs="{span:10 , offset:1}" :sm="{span:5 ,offset:1}" class="toolsbar doc"><h3>个人文件</h3> </el-col>
+      <el-col :xs="{span:11 }" :sm="{span:5 ,offset:1}" class="toolsbar workform"> <h3>表单</h3> </el-col>
+      <el-col :xs="{span:11 }" :sm="{span:5 ,offset:1}" class="toolsbar addressbook"> <h3>通讯录</h3> </el-col>
+      <el-col :xs="{span:11 }" :sm="{span:5 ,offset:1}" class="toolsbar doc"><h3>个人文件</h3> </el-col>
     </el-row>
   </div>
 </template>
@@ -28,12 +28,12 @@ export default {
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     border-radius: 5px;
     margin-top: 15px;
-    margin-left: 35px;
+    margin-right: 10px;
 }
 .signin{
     background-color: #00c0ef;
     clear: both;
-   overflow: auto;
+    overflow: auto;
 }
 .workform{
     background-color: #00a65a;
