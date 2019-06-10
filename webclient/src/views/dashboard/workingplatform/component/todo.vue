@@ -30,7 +30,39 @@
       </ul>
     </div>
       <el-dialog title="創建代辦" :visible.sync="createtodo" :width="eldialogWidth" :before-close="handleClose">      
-      <span>这是一段信息</span>
+      <span>
+        <el-form :model='todoform' label-width='50px'>
+            <el-form-item label='日期' >
+              <el-date-picker
+                v-model="todoform.todoData"
+                type="date"
+                placeholder="选择日期">
+              </el-date-picker>
+            </el-form-item>
+            <el-form-item label='時間' >
+              <el-time-picker
+                v-model="todoform.todoTime"
+                placeholder="任意时间点">
+              </el-time-picker>
+            </el-form-item>
+            <el-form-item label='事項'>
+              <el-input
+                type="textarea"
+                placeholder="请输入内容"
+                v-model="todoform.todoMsg"
+                maxlength="50"
+                show-word-limit
+              ></el-input>
+            </el-form-item>
+            <el-form-item label='提醒' style='width: 250px'>
+              <el-switch
+                v-model="todoform.isRemind"
+                active-color="#13ce66"
+                inactive-color="#ff4949">
+              </el-switch>
+            </el-form-item>
+        </el-form>
+      </span>
       <span slot="footer" class="dialog-footer">
         <el-button @click="createtodo = false">取 消</el-button>
         <el-button type="primary" @click="createtodo = false">确 定</el-button>
@@ -47,7 +79,13 @@ export default {
       isClose: false,
       createtodo: false,
       dialogVisible: false,
-      eldialogWidth:''
+      eldialogWidth:'',
+      todoform:{
+        todoData:'',
+        todoTime:'',
+        todoMsg:'',
+        isRemind:false,
+      },      
     };
   },
   methods: {
@@ -70,7 +108,7 @@ export default {
       Number(dialogWidth) <= 720 ? that.eldialogWidth = '95%' : Number(dialogWidth) > 720 & Number(dialogWidth) <= 1024 ? that.eldialogWidth = '70%' : Number(dialogWidth) > 1024 & Number(dialogWidth) <= 1333 ? that.eldialogWidth = '50%' : that.eldialogWidth = '40%'
     }
   },
-  
+
 };
 </script>
 <style>
