@@ -103,7 +103,6 @@ export default {
     },
     changeUser(usr) {
       this.userData = usr
-      // console.log(usr)
     }
   }
 }

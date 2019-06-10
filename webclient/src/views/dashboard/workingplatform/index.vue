@@ -16,7 +16,7 @@
         <announcement/>
       </el-col>
       <el-col :xs="{span: 24}" :sm="{span: 11 ,offset:1}" class="todobox">
-        <todo/>
+        <todo ref="createtodo"></todo>
       </el-col>
     </el-row>
   </div>
@@ -43,10 +43,14 @@ export default {
   data() {
     return {
     }
+  },
+  methods:{
+    todoAdd:()=>{
+      this.$ref.createtodo.ckdialog();
+    }
   }
 }
 </script>
-
 <style>
  .curUsrtemplate{
    width: 90%;
