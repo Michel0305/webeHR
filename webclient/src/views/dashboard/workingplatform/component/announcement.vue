@@ -4,6 +4,7 @@
       <h6>
         公告
       </h6>
+      <el-button type="primary" icon="el-icon-edit" circle></el-button>
     </div>
     <div>
       <el-table
@@ -67,7 +68,15 @@ export default {
 .ccontent{
     padding: 15px;
     overflow: auto;
-
 }
+.urtitle{
+  height: 38px;
+}
+.urtitle .el-button{
+  float: right;  
+  margin: 5px; 
+  margin-right: 30px;
+}
+
 </style>
 
