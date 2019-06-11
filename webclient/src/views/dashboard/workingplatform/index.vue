@@ -1,14 +1,14 @@
 <template>
   <div class="curUsrtemplate">
     <el-row :gutter="0">
-        <toolsbar/>
+      <toolsbar/>
     </el-row>
     <el-row :gutter="0">
       <el-col :xs="{span: 24 }" :sm="{span: 15}" class="signbox">
-        <userapply/>        
+        <userapply/>
       </el-col>
       <el-col :xs="{span: 24}" :sm="{span: 7 ,offset:1}" class="usrbox">
-        <user />
+        <user/>
       </el-col>
     </el-row>
     <el-row :gutter="0">
@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import user from './component/user'
-import userapply from './component/usrapply'
-import usercompoent from './component/weather'
-import todo from './component/todo'
-import announcement from './component/announcement'
-import history from './component/history'
-import toolsbar from './component/toolbar'
+import user from "./component/user";
+import userapply from "./component/usrapply";
+import usercompoent from "./component/weather";
+import todo from "./component/todo";
+import announcement from "./component/announcement";
+import history from "./component/history";
+import toolsbar from "./component/toolbar";
 export default {
   components: {
     user,
@@ -41,48 +41,47 @@ export default {
     toolsbar
   },
   data() {
-    return {
-    }
+    return {};
   },
-  methods:{
-    todoAdd:()=>{
+  methods: {
+    todoAdd: () => {
       this.$ref.createtodo.ckdialog();
     }
   }
-}
+};
 </script>
 <style>
- .curUsrtemplate{
-   width: 90%;
-   margin: 0 auto;
- }
- .signbox{
-  padding: 0px; 
+.curUsrtemplate {
+  width: 90%;
+  margin: 0 auto;
+}
+.signbox {
+  padding: 0px;
   border: 1px solid rgb(239, 234, 243);
-  margin-top: 20px; 
+  margin-top: 20px;
   /* margin-left: 35px; */
- }
+}
 
-.cnmentbox{
+.cnmentbox {
   margin-top: 20px;
 }
-.usrbox{
+.usrbox {
   margin-top: 20px;
 }
 .leftplatform {
-    height: 100%;
+  height: 100%;
 }
 
 .midplatform {
-    border: 1px rgb(239, 234, 243) solid;
+  border: 1px rgb(239, 234, 243) solid;
 }
 
 .rightplatform {
-    height: 100%;
+  height: 100%;
 }
-.todobox{
+.todobox {
   margin-top: 20px;
   border: 1px solid rgb(239, 234, 243);
   height: 380px;
-} 
+}
 </style>
