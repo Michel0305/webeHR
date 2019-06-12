@@ -4,18 +4,18 @@
       <toolsbar/>
     </el-row>
     <el-row :gutter="0">
-      <el-col :xs="{span: 24 }" :sm="{span: 15}" class="signbox">
+      <el-col :xs="{span: 24 }" :sm="{span: 24}" :md="{span:14}" :lg="{span:15}" class="signbox">
         <userapply/>
       </el-col>
-      <el-col :xs="{span: 24}" :sm="{span: 7 ,offset:1}" class="usrbox">
+      <el-col :xs="{span: 24}" :sm="{span: 24 ,offset:0}" :md="{span:9 ,offset:1}" :lg="{span:8,offset:1}" class="usrbox">
         <user/>
       </el-col>
     </el-row>
     <el-row :gutter="0">
-      <el-col :xs="{span: 24}" :sm="{span: 11 }" class="cnmentbox">
+      <el-col :xs="{span: 24}" :sm="{span: 15 }" class="cnmentbox">
         <announcement/>
       </el-col>
-      <el-col :xs="{span: 24}" :sm="{span: 11 ,offset:1}" class="todobox">
+      <el-col :xs="{span: 24}" :sm="{span: 8 ,offset:1}" class="todobox">
         <todo ref="createtodo"></todo>
       </el-col>
     </el-row>
@@ -82,6 +82,6 @@ export default {
 .todobox {
   margin-top: 20px;
   border: 1px solid rgb(239, 234, 243);
-  height: 380px;
+  /*height: 380px;*/
 }
 </style>

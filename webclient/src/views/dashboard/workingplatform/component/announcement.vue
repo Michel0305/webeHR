@@ -60,7 +60,7 @@ export default {
     clear: both;
     color: rgb(116, 116, 116);
     font-size: 0.9rem;
-    min-height: 300px;
+    height: 300px;
 }
 .ctitle{
     text-align: center;
