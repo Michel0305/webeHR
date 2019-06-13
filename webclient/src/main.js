@@ -23,6 +23,13 @@ import * as filters from './filters' // global filters
 
 import BootstrapVue from 'bootstrap-vue'
 
+import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
+
+
 // Vue.use(BootstrapVue)
 
 // import 'bootstrap/dist/css/bootstrap.css'
@@ -30,22 +37,24 @@ import BootstrapVue from 'bootstrap-vue'
 
 //import '../src/icons/icons/iconfont.css'  //新引進的ICons
 
+Vue.use(VueQuillEditor)
+
 Vue.use(Element, {
-  size: Cookies.get('size') || 'medium', // set element-ui default size
-  i18n: (key, value) => i18n.t(key, value)
+    size: Cookies.get('size') || 'medium', // set element-ui default size
+    i18n: (key, value) => i18n.t(key, value)
 })
 
 // register global utility filters.
 Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key])
+    Vue.filter(key, filters[key])
 })
 
 Vue.config.productionTip = false
 
 new Vue({
-  el: '#app',
-  router,
-  store,
-  i18n,
-  render: h => h(App)
+    el: '#app',
+    router,
+    store,
+    i18n,
+    render: h => h(App)
 })
